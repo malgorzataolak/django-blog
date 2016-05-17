@@ -1,0 +1,17 @@
+<html>
+	<head>
+		<title>Mój pierwszy blog w Django!</title>
+	</head>
+	<body>
+		<p>Opublikowano : 17.05.2016</p>
+		<h1>Mój pierwszy blog!</h1>
+		<p>Dessert jujubes ice cream dessert. Dessert sweet roll cake bear claw oat cake macaroon sweet candy canes powder. Donut gummies tiramisu. Macaroon sweet wafer jelly-o topping apple pie. Cotton candy caramels pastry bonbon gummies icing cake candy cake. Jelly chocolate bar sweet macaroon marzipan chocolate bar biscuit. Muffin halvah gummi bears candy sesame snaps jelly-o candy canes carrot cake muffin. Lemon drops sesame snaps chupa chups sweet tiramisu topping. Wafer pudding lollipop candy canes. Liquorice toffee halvah. Pastry sweet roll tootsie roll chocolate cake chupa chups liquorice. Chocolate pie oat cake pie tart marshmallow tootsie roll.</p>
+
+		{% for post in posts %}
+			<div>
+				<p>opublikowano: {{ post.published_date }}</p>
+				<h1>{{ post.title }}</h1>
+				<p>{{ post.text|linebreaks }}</p>
+			</div>
+		{% endfor %}
+	</body>
