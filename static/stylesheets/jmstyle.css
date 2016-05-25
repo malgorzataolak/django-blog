@@ -1,0 +1,287 @@
+*{
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+body{
+	font-size:1em;
+	background-image: url("../images/tlo.jpg");
+	font-family: 'Inder', sans-serif;
+	line-height:1.2;
+}
+#tytul{
+	width:100%;
+	padding:13px;
+	color:#8C002A;
+	
+	text-align:center;
+	font-size:1.5em;
+	
+}
+.efekt, .info, h1{
+	font-family:'Grand Hotel', sans-serif;
+}
+.navfoto{
+	display:none;
+}
+
+nav{
+	width:100%;
+	background-image:url("../images/navfoto.jpg");
+	background-size:cover;
+}
+nav ul{
+width:100%;
+
+}
+nav ul li{
+	width:100%;
+}
+
+
+
+a{
+	text-decoration:none;
+}
+nav{
+	margin-top:1px;
+}
+nav ul li a{	
+	display:block;
+	padding:30px;
+	text-align:center;
+	color:white;
+	font-size:1.5em;
+	
+}
+nav ul li a:hover{
+		font-size:1.6em;
+		text-shadow:1px 0px 19px rgba(54, 56, 0, 1);
+		background-color:rgba(227, 227, 227,0.2)
+	}
+
+	nav ul li a:active{
+		font-size:1.6em;
+		text-shadow:1px 0px 19px rgba(162, 111, 40, 1);
+	}
+
+#wrap{
+	width:100%;
+	padding:0px 4px;
+	background: white;
+}
+
+h1{
+	font-size:2.5em;
+	color:#92002C;
+	width:100%;
+	text-align:center;
+	padding:20px;
+}
+.back{
+	padding:15px;
+	border: dotted 2px #92002C;
+	background-color:white;
+	border-radius:15px;
+	display:block;
+	margin:0 auto;
+	
+	
+}
+#artysta ul{
+
+	
+	width:280px;
+	
+	
+}
+
+#artysta ul li{
+	font-size:0.9em;
+	color:#101010;
+}
+
+.efekt{
+	font-size:1.5em;
+	color:#92002C;
+}
+.part{
+	width:100%;
+	padding:10px 0px;
+	
+}
+#artysta img{
+	width:auto;
+}
+.artfot{
+	width:auto;
+	display:block;
+	margin:0 auto;
+}
+
+.inne{
+	width:100%;
+	padding:15px;
+	line-height:1.4;
+}
+#ksiega{
+	width: 100%;
+}
+#ksiega .back p{
+	text-align:center;
+	padding:4px;
+}
+form{
+	padding:20px;
+	text-align:center;
+}
+
+form textarea{
+	width:100%;
+}
+
+button{
+	background-color:#92002C;
+	color:white;
+	font-family: 'Inder', sans-serif;
+	padding:6px;
+	margin:4px;
+}
+.moja{
+	background-color:#F4004A;
+	border-radius: 40px 0px;
+	padding:9px 9px;
+	overflow:auto;
+	border:2px dotted white;
+}
+#kontakt img.part{
+	width:auto;
+	border-radius: 40px 0px;
+	display:block;
+	margin:0px auto;
+	border:2px dotted white;
+	padding:0px;
+}
+
+.info{
+	padding:15px;
+	padding-bottom:0px;
+	padding-right:0px;
+	font-size:1.8em;
+	text-align:center;
+	display:block;
+	margin:0px auto;
+}
+
+#kontakt ul{
+	padding:10px;
+}
+#kontakt ul li{
+	padding:5px 0px;
+	}
+
+#kontakt ul li a{
+	color:#92002C;
+	
+	
+}
+
+#kontakt ul li a:hover{
+	color:#BAA8AD;
+}
+#kontakt ul li a:active{
+	color:white;
+}
+footer{
+		
+		
+	}
+	footer a{
+		border-radius:50%;
+		width:100px;
+		height:100px;
+		display:block;
+		margin:30px auto;
+		padding:40px 0px 0px 15px;
+		color:#F4004A;
+		background-color:#92002C;
+	}
+	footer a:hover{
+		color:white;
+		text-shadow:1px 0px 19px rgba(54, 56, 0, 1);
+				
+	}
+	footer a:active{
+		color:white;
+		text-shadow:1px 0px 19px rgba(162, 111, 40, 1);
+	}
+	
+	footer p{
+		background-color:#92002C;
+		border-radius:15px 15px 0px 0px;
+		padding:5px;
+		margin-top:10px;
+		color:white;
+		font-size:0.7em;
+		text-align:center;
+	}
+@media screen and (min-width:769px){
+	.navfoto{
+	display:block;
+	width:100%;
+
+}
+	nav{
+		width:100%;
+		margin-right:2%;
+		background-image:none;
+		background-color:#8C002A;
+		overflow: auto;
+	}
+	nav ul li a{
+		float:left;
+		width:25%;
+		padding:20px;
+		font-size:1.3em;
+		border-bottom: 1px solid #E3E3E3;
+	}
+	
+	nav ul li a:hover{
+		font-size:1.4em;
+	
+	}
+
+	nav ul li a:active{
+		font-size:1.4em;
+	
+	}
+	#wrap{
+		
+		width:70%;
+		margin:0% 15%;
+	}
+	#artysta{
+		clear:left;
+	}
+	.part{
+		float:left;
+		width:50%;
+	}
+	
+	.inne{
+		clear:left;
+	}
+	#ksiega{
+		width:70%;
+		margin:0 15%;
+	}
+	
+	
+	
+	.moja{
+		width:670px;
+		display:block;
+		margin:0 auto;
+	}
+	
+}
