@@ -2,15 +2,19 @@
 {% load staticfiles %}
 	{% block content %}
 		<div id="blog">
+			{% if user.is_authenticated %}
+			<a href="{% url 'post_new' %}">dodaj post</a>
+			{% endif %}
 			<h1>Moje wpisy na blogu...</h1>
 			{% for post in posts %}
 			<div>
 				<p>opublikowano: {{ post.published_date }}</p>
 				<h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
 				<p>{{ post.text|linebreaks }}</p>
-			</div>
+			</div><!-- koniec wpisu -->
+			{% endfor %}
 		</div><!--koniec sekcji blog-->
-		{% endfor %}
+		
 		<div id="artysci">
 			<h1>Moi ulubieni muzycy</h1>
 				{% for artist in artists %}
