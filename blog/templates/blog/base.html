@@ -1,0 +1,44 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Muzyczny blog </title> 
+
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	<link href='http://fonts.googleapis.com/css?family=Grand+Hotel&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Inder&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	<link href="{% static 'stylesheets/reset.css' %}" rel="stylesheet">
+	<link href="{% static 'stylesheets/jmstyle.css' %}" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'stylesheets/font-awesome.min.css' %}">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel='stylesheet' type="text/css">
+	</head>
+	<body>
+		
+		<div id="wrap">
+		<p id="tytul">Witaj na moim blogu!</p>
+		<img class="navfoto" alt="naglowek" src="{% static 'images/navfoto.jpg' %}">
+		<nav>
+			<ul>
+				<li> <a href="#blog">Wpisy</a></li>
+				<li><a href="#artysci">Ulubieńcy</a></li>
+				<li><a href="#ksiega">Księga Gości</a></li>
+				<li><a href="#kontakt">Kontakt</a></li>
+			</ul>
+		</nav>
+		{% block content %}
+		{% endblock %}				
+		<footer>
+			<a href="#tytul"><i class="fa fa-arrow-circle-up"></i>W górę</a>
+			<p>Mój pierwszy blog w Django :) , autor projektu: Małgorzata Olak</p>
+		</footer>
+		</div><!-- koniec zawijania-->
+	</body>
+	
+</html>

@@ -32,3 +32,5 @@ class ArtistInfo(models.Model):
 
 	def __str__(self):
 		return self.artist_name
+
+
