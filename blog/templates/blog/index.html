@@ -10,12 +10,11 @@
 			<div>
 				<p>opublikowano: {{ post.published_date }}</p>
 				<h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-				<p>{{ post.text|linebreaks }}</p>
+				<p>{{ post.text|truncatewords:20 }}</p>
 				<a href="{% url 'blog.views.post_detail' pk=post.pk %}">Komentarze: {{post.approved_comments.count }}</a>
 			</div><!-- koniec wpisu -->
 			{% endfor %}
 		</div><!--koniec sekcji blog-->
-		<p>{{ test.kolo }}</p>
 		<div id="artysci">
 			<h1>Moi ulubieni muzycy</h1>
 				{% for artist in artists %}
@@ -26,16 +25,60 @@
 				{% endfor %}
 		</div><!-- koniec sekcji artysci -->
 		<div id="ksiega">
-			<h1>Księga gości</h1>
-				<div class="back">
-				<p>Jesteś fanem muzyki? Masz jakieś uwagi do strony? Napisz do mnie!</p>
-				<form>
-					<textarea name="wpis"></textarea>
-					<p>Twoja nazwa:</p>
-					<input type="text" name="nazwa"><br>
-					<button type="button">Wyślij!</button>
-				<form>
-				</div>
+			<h1>Rankingi</h1>
+				<h2>Ulubieni wykonawcy/zespoły</h2>
+				<p>Nr - Artysta/Zespół - Liczba odtworzeń</p>
+				{% for a in res.topartists.artist %}
+				<p>{{forloop.counter }} {{ a.name }} {{ a.playcount }}</p>
+				{% endfor %}
+				<h2>Ulubione albumy</h2>
+				<p>Nr - Tytuł - Artysta/Zespół - Liczba odtworzeń</p>
+				{% for b in res2.topalbums.album %}
+				<p> {{forloop.counter }} {{ b.name }} {{ b.artist.name }} {{ b.playcount }}</p>
+				{% endfor %}
+				<h2>Ulubione utwory</h2>
+				<p>Nr - Tytuł - Artysta/Zespół - Liczba odtworzeń</p>
+				{% for c in res3.toptracks.track %}
+				<p>{{forloop.counter }} {{ c.name }} {{ c.artist.name }} {{ c.playcount }} </p>
+				{% endfor %}
+				
+				<form action="/ranking/" method="POST">
+					
+					<p>Wprowadź dane</p>
+					<p>Nazwa użytkownika: </p>
+					<input type="text" name="search_user"><br>
+					<p>Zakres czasu [overall, 1month, 6month, 12month] :</p>
+					<input type="text" name="set_period"><br>
+					<p>Ilość pozycji</p>
+					<input type="text" name="set_limit"><br>
+					<button type="submit">SPRAWDŹ!</button>
+					{% csrf_token %}
+				</form>
+				{% if r %}
+				<h2>Ulubieni wykonawcy/zespoły</h2>
+				<p>Nr - Artysta/Zespół - Liczba odtworzeń</p>
+				{% for m in r.topartists.artist %}
+				<p>{{forloop.counter }} {{ m.name }} {{ m.playcount }}</p>
+				{% endfor %}
+				<h2>Ulubione albumy</h2>
+				<p>Nr - Tytuł - Artysta/Zespół - Liczba odtworzeń</p>
+				{% for n in r2.topalbums.album %}
+				<p> {{forloop.counter }} {{ n.name }} {{ n.artist.name }} {{ n.playcount }}</p>
+				{% endfor %}
+				<h2>Ulubione utwory</h2>
+				<p>Nr - Tytuł - Artysta/Zespół - Liczba odtworzeń</p>
+				{% for o in r3.toptracks.track %}
+				<p>{{forloop.counter }} {{ o.name }} {{ o.artist.name }} {{ o.playcount }} </p>
+				{% endfor %}
+				{% endif %}
+				{% if msg %}
+					<p>{{ msg }}</p>
+				{% endif %}
+				{%if msg2 %}
+					<p>{{ msg2 }}</p>
+				{% endif %}
+				
+				
 		</div><!-- koniec sekcji ksiega-->
 		
 		<div id="kontakt">

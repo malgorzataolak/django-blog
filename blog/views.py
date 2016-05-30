@@ -4,15 +4,16 @@ from .models import Post, Comment
 from .models import ArtistInfo
 from .forms import PostForm, CommentForm
 from django.contrib.auth.decorators import login_required
+import blog.lastfm as lastfm
 
 
-
-def post_list(request, **kwargs):
+def post_list(request):
 	posts=Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
 	artists=ArtistInfo.objects.all()
-	
-
-	return render(request, 'blog/index.html', {'posts':posts, 'artists':artists})
+	res=lastfm.get_top_artists()
+	res2=lastfm.generate_albums()
+	res3=lastfm.generate_tracks()
+	return render(request, 'blog/index.html', {'posts':posts, 'artists':artists, 'res': res, 'res2' : res2, 'res3' :res3})
 
 
 def post_detail(request, pk):
@@ -73,3 +74,27 @@ def comment_remove(request, pk):
 	comment.delete()
 	return redirect('blog.views.post_detail', pk=post_pk)
 
+
+def your_rankings(request):
+	posts=Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+	artists=ArtistInfo.objects.all()
+	res=lastfm.get_top_artists()
+	res2=lastfm.generate_albums()
+	res3=lastfm.generate_tracks()
+
+	if request.method=="POST":
+		lastfm.user=request.POST['search_user']
+		if lastfm.is_user():
+			new_period=request.POST['set_period']
+			if new_period not in lastfm.periods:
+				msg2="Został wpisany zły zakres, wypełnij jeszcze raz :)"
+				return render(request,'blog/index.html', {'posts':posts, 'artists':artists, 'res': res, 'res2' : res2, 'res3' :res3, 'msg2':msg2});
+			lastfm.period=new_period
+			lastfm.limit=request.POST['set_limit']
+			r=lastfm.get_top_artists()
+			r2=lastfm.generate_albums()
+			r3=lastfm.generate_tracks()
+			return render(request,'blog/index.html', {'posts':posts, 'artists':artists, 'res': res, 'res2' : res2, 'res3' :res3, 'r':r, 'r2':r2, 'r3':r3})
+		else:
+			msg="Taki użytkownik nie istnieje :("
+			return render(request,'blog/index.html', {'posts':posts, 'artists':artists, 'res': res, 'res2' : res2, 'res3' :res3, 'msg':msg})
