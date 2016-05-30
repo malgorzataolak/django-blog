@@ -11,4 +11,23 @@
          <h1>{{ post.title }}</h1>
          <p>{{ post.text|linebreaks }}</p>
     </div><!--koniec postu-->
+
+<hr>
+<a href="{% url 'add_comment' pk=post.pk %}">Dodaj komentarz</a>
+{% for comment in post.comments.all %}
+    {% if user.is_authenticated or commend.approved_comment %}
+    <div class="comment">
+        {% if not comment.approved_comment %}
+            <a href="{% url 'comment_remove' pk=comment.pk %}">Odrzuć komentarz</a>
+            <a href="{% url 'comment_approve' pk=comment.pk %}">Akceptuj komentarz</a>
+        {% endif %}
+        <div class="date">{{ comment.created_date }}</div>
+        <p>{{ comment.author }}</p>
+        <p>{{ comment.text }}</p>
+    </div>
+    {% endif %}
+   {% empty %}
+        <p>Brak komentarzy</p>
+{% endfor %}
+
 {% endblock %}
