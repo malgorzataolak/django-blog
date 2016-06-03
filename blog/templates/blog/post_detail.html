@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="post">
-      <a href="{% url 'post_new' pk=post.pk %}">Edytuj post!</a>
+      <a class="admin" href="{% url 'post_new' pk=post.pk %}">Edytuj post!</a>
         {% if post.published_date %}
             <div class="date">
                 {{post.published_date}}
@@ -13,17 +13,19 @@
     </div><!--koniec postu-->
 
 <hr>
-<a href="{% url 'add_comment' pk=post.pk %}">Dodaj komentarz</a>
+<a class="user" href="{% url 'add_comment' pk=post.pk %}">Dodaj komentarz</a>
 {% for comment in post.comments.all %}
     {% if user.is_authenticated or commend.approved_comment %}
     <div class="comment">
         {% if not comment.approved_comment %}
-            <a href="{% url 'comment_remove' pk=comment.pk %}">Odrzuć komentarz</a>
-            <a href="{% url 'comment_approve' pk=comment.pk %}">Akceptuj komentarz</a>
+        <div class="buttony">
+            <a class="adminNO" href="{% url 'comment_remove' pk=comment.pk %}">Odrzuć komentarz</a>
+            <a class="adminYES" href="{% url 'comment_approve' pk=comment.pk %}">Akceptuj komentarz</a>
+         </div>
         {% endif %}
         <div class="date">{{ comment.created_date }}</div>
-        <p>{{ comment.author }}</p>
-        <p>{{ comment.text }}</p>
+        <p class="autor">{{ comment.author }}</p>
+        <p class="com">{{ comment.text }}</p>
     </div>
     {% endif %}
    {% empty %}

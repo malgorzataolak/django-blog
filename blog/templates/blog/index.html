@@ -1,49 +1,76 @@
 {% extends 'blog/base.html' %}
 {% load staticfiles %}
 	{% block content %}
+	<nav>
+			<ul>
+				<li> <a href="#blog">Wpisy</a></li>
+				<li><a href="#artysci">Artyści</a></li>
+				<li><a href="#rankingi">Rankingi</a></li>
+				<li><a href="#kontakt">Kontakt</a></li>
+			</ul>
+		</nav>
 		<div id="blog">
 			{% if user.is_authenticated %}
-			<a href="{% url 'post_new' %}">dodaj post</a>
+			<a class="admin" href="{% url 'post_new' %}">dodaj post</a>
 			{% endif %}
 			<h1>Moje wpisy na blogu...</h1>
 			{% for post in posts %}
-			<div>
-				<p>opublikowano: {{ post.published_date }}</p>
+			<div class="wpis">
+				<p class="data">opublikowano: {{ post.published_date }}</p>
 				<h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
 				<p>{{ post.text|truncatewords:20 }}</p>
 				<a href="{% url 'blog.views.post_detail' pk=post.pk %}">Komentarze: {{post.approved_comments.count }}</a>
 			</div><!-- koniec wpisu -->
 			{% endfor %}
 		</div><!--koniec sekcji blog-->
+		<hr>
 		<div id="artysci">
 			<h1>Moi ulubieni muzycy</h1>
 				{% for artist in artists %}
-				<div>
-					<p>{{artist.artist_name }}</p>
-					<img src="{{static}} {{artist.add_photo}}">
+				<div class="artysta">
+					<h2>{{artist.artist_name }}</h2>
+					<img src="/{{static}}{{artist.add_photo}}">
+					<p>{{artist.birth_date}}</p>
+					<p>{{artist.country}}</p>
+					<p>{{artist.instruments}}</p>
+					<p>{{artist.music_genre}}</p>
+					<p>{{artist.record_label}}</p>
+					<p>{{artist.group}}</p>
 				</div>
 				{% endfor %}
 		</div><!-- koniec sekcji artysci -->
-		<div id="ksiega">
+		<hr>
+		<div id="rankingi">
 			<h1>Rankingi</h1>
+			<div class="rwrap">
+			<p class="t">Moje rankingi odsłuchań pobrane ze strony LastFm :)</p>
+			<div class="ranking">
 				<h2>Ulubieni wykonawcy/zespoły</h2>
 				<p>Nr - Artysta/Zespół - Liczba odtworzeń</p>
 				{% for a in res.topartists.artist %}
 				<p>{{forloop.counter }} {{ a.name }} {{ a.playcount }}</p>
 				{% endfor %}
+			</div>
+			<div class="ranking">
 				<h2>Ulubione albumy</h2>
 				<p>Nr - Tytuł - Artysta/Zespół - Liczba odtworzeń</p>
 				{% for b in res2.topalbums.album %}
 				<p> {{forloop.counter }} {{ b.name }} {{ b.artist.name }} {{ b.playcount }}</p>
 				{% endfor %}
+			</div>
+			<div class="ranking">
 				<h2>Ulubione utwory</h2>
 				<p>Nr - Tytuł - Artysta/Zespół - Liczba odtworzeń</p>
 				{% for c in res3.toptracks.track %}
 				<p>{{forloop.counter }} {{ c.name }} {{ c.artist.name }} {{ c.playcount }} </p>
 				{% endfor %}
+			</div>
+			</div>
+			<hr>
+			<div class="rankingform">
 				
 				<form action="/ranking/" method="POST">
-					
+					<h2>Sprawdź rankingi muzyczne na LastFm!</h2>
 					<p>Wprowadź dane</p>
 					<p>Nazwa użytkownika: </p>
 					<input type="text" name="search_user"><br>
@@ -54,30 +81,39 @@
 					<button type="submit">SPRAWDŹ!</button>
 					{% csrf_token %}
 				</form>
+				</div>
 				{% if r %}
+				
+				<h1>Rankingi użytkownika {{szukanedla}}</h1>
+				<div class="ranking">
 				<h2>Ulubieni wykonawcy/zespoły</h2>
 				<p>Nr - Artysta/Zespół - Liczba odtworzeń</p>
 				{% for m in r.topartists.artist %}
 				<p>{{forloop.counter }} {{ m.name }} {{ m.playcount }}</p>
 				{% endfor %}
+				</div>
+				<div class="ranking">
 				<h2>Ulubione albumy</h2>
 				<p>Nr - Tytuł - Artysta/Zespół - Liczba odtworzeń</p>
 				{% for n in r2.topalbums.album %}
 				<p> {{forloop.counter }} {{ n.name }} {{ n.artist.name }} {{ n.playcount }}</p>
 				{% endfor %}
+				</div>
+				<div class="ranking">
 				<h2>Ulubione utwory</h2>
 				<p>Nr - Tytuł - Artysta/Zespół - Liczba odtworzeń</p>
 				{% for o in r3.toptracks.track %}
 				<p>{{forloop.counter }} {{ o.name }} {{ o.artist.name }} {{ o.playcount }} </p>
 				{% endfor %}
+				</div>
 				{% endif %}
 				{% if msg %}
-					<p>{{ msg }}</p>
+					<p class="alert">{{ msg }}</p>
 				{% endif %}
 				{%if msg2 %}
-					<p>{{ msg2 }}</p>
+					<p class="alert">{{ msg2 }}</p>
 				{% endif %}
-				
+				<hr>
 				
 		</div><!-- koniec sekcji ksiega-->
 		

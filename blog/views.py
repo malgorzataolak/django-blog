@@ -8,8 +8,11 @@ import blog.lastfm as lastfm
 
 
 def post_list(request):
-	posts=Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+	posts=Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
 	artists=ArtistInfo.objects.all()
+	lastfm.user="margo121"
+	lastfm.period="12month"
+	lastfm.limit="10"
 	res=lastfm.get_top_artists()
 	res2=lastfm.generate_albums()
 	res3=lastfm.generate_tracks()
@@ -78,6 +81,9 @@ def comment_remove(request, pk):
 def your_rankings(request):
 	posts=Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
 	artists=ArtistInfo.objects.all()
+	lastfm.user="margo121"
+	lastfm.period="12month"
+	lastfm.limit="10"
 	res=lastfm.get_top_artists()
 	res2=lastfm.generate_albums()
 	res3=lastfm.generate_tracks()
@@ -89,12 +95,13 @@ def your_rankings(request):
 			if new_period not in lastfm.periods:
 				msg2="Został wpisany zły zakres, wypełnij jeszcze raz :)"
 				return render(request,'blog/index.html', {'posts':posts, 'artists':artists, 'res': res, 'res2' : res2, 'res3' :res3, 'msg2':msg2});
+			szukanedla=lastfm.user;
 			lastfm.period=new_period
 			lastfm.limit=request.POST['set_limit']
 			r=lastfm.get_top_artists()
 			r2=lastfm.generate_albums()
 			r3=lastfm.generate_tracks()
-			return render(request,'blog/index.html', {'posts':posts, 'artists':artists, 'res': res, 'res2' : res2, 'res3' :res3, 'r':r, 'r2':r2, 'r3':r3})
+			return render(request,'blog/index.html', {'posts':posts, 'artists':artists, 'res': res, 'res2' : res2, 'res3' :res3, 'szukanedla': szukanedla, 'r':r, 'r2':r2, 'r3':r3})
 		else:
 			msg="Taki użytkownik nie istnieje :("
 			return render(request,'blog/index.html', {'posts':posts, 'artists':artists, 'res': res, 'res2' : res2, 'res3' :res3, 'msg':msg})

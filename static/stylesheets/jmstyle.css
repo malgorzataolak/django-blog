@@ -6,20 +6,22 @@
 body{
 	font-size:1em;
 	background-image: url("../images/tlo.jpg");
-	font-family: 'Inder', sans-serif;
+	font-family: 'Arimo', sans-serif;
 	line-height:1.2;
+}
+#wrap, #rankingi{
+	overflow: auto;
 }
 #tytul{
 	width:100%;
-	padding:13px;
 	color:#8C002A;
 	
 	text-align:center;
 	font-size:1.5em;
 	
 }
-.efekt, .info, h1{
-	font-family:'Grand Hotel', sans-serif;
+.efekt, .info, h1, nav a, p#tytul, .ranking, form, #artysci h2{
+	font-family:'Amatic SC', cursive;
 }
 .navfoto{
 	display:none;
@@ -68,7 +70,7 @@ nav ul li a:hover{
 #wrap{
 	width:100%;
 	padding:0px 4px;
-	background: white;
+	background: #fefbd0;
 }
 
 h1{
@@ -80,7 +82,7 @@ h1{
 }
 .back{
 	padding:15px;
-	border: dotted 2px #92002C;
+	border: dotted 2px #775c6a;
 	background-color:white;
 	border-radius:15px;
 	display:block;
@@ -88,18 +90,82 @@ h1{
 	
 	
 }
-#artysta ul{
 
-	
-	width:280px;
-	
+#blog, #rankingi, #artysci, .rwrap{
+	overflow: auto;
+}
+
+.wpis, .ranking{
+	padding:1%;
+}
+
+.ranking{
+	padding:1%;
+}
+
+p.t{
+	text-align: center;
+	font-size: 1em;
+}
+.rankingform{
+	clear:both;
+}
+.rankingform h2{
+	font-size:1.5em;
+	color: #8C002A;
 	
 }
 
-#artysta ul li{
+hr {
+  height: 10px;
+  border: 0;
+  box-shadow: 0 10px 10px -10px #8c8c8c inset;
+}
+
+ .wpis p{
+	 font-size:0.9em;
+	 
+ }
+ .wpis p.data, .post .date, .comment .date {
+	 font-size: 0.7em;
+	 padding:0;
+ }
+.wpis a{
+	color:#775c6a;
+}
+
+.wpis a:hover, .ranking h2{
+	color:#8eb9a8;
+}
+
+#artysci img{
+	width:100%;
+	padding:2%;
+	text-align:center;
+}
+
+#artysci h2{
+	font-size:1.5em;
+	color:#f4828c;
+	text-align: center;
+}
+
+#artysci p{
 	font-size:0.9em;
-	color:#101010;
+	padding:2%;
+	background-color:white;
 }
+
+
+.ranking h2{
+	font-size: 1.7em;
+}
+.ranking p{
+	font-size:1.4em;
+}
+
+
+
 
 .efekt{
 	font-size:1.5em;
@@ -110,34 +176,21 @@ h1{
 	padding:10px 0px;
 	
 }
-#artysta img{
-	width:auto;
-}
-.artfot{
-	width:auto;
-	display:block;
-	margin:0 auto;
-}
 
-.inne{
-	width:100%;
-	padding:15px;
-	line-height:1.4;
-}
-#ksiega{
-	width: 100%;
-}
-#ksiega .back p{
-	text-align:center;
-	padding:4px;
-}
 form{
 	padding:20px;
 	text-align:center;
+	
+}
+
+form p{
+	padding:1%;
+	font-size:1.4em;
 }
 
 form textarea{
 	width:100%;
+	padding:1%;
 }
 
 button{
@@ -192,11 +245,8 @@ button{
 #kontakt ul li a:active{
 	color:white;
 }
-footer{
-		
-		
-	}
-	footer a{
+
+	 a.wgore{
 		border-radius:50%;
 		width:100px;
 		height:100px;
@@ -206,12 +256,12 @@ footer{
 		color:#F4004A;
 		background-color:#92002C;
 	}
-	footer a:hover{
+	a:hover.wgore{
 		color:white;
 		text-shadow:1px 0px 19px rgba(54, 56, 0, 1);
 				
 	}
-	footer a:active{
+	a:active.wgore{
 		color:white;
 		text-shadow:1px 0px 19px rgba(162, 111, 40, 1);
 	}
@@ -225,58 +275,127 @@ footer{
 		font-size:0.7em;
 		text-align:center;
 	}
-@media screen and (min-width:769px){
+	.buttony{
+		overflow:auto;
+	}
+	a.admin, a.adminYES, a.user, a.adminNO{
+		display:block;
+		width:100px;
+		text-align:center;
+		padding:15px;
+		margin:1%;
+		background-color:#e64b55;
+		color:white;
+	}
+	a.admin:hover, a.adminYES:hover, a.user:hover, a.adminNO:hover{
+		background-color: #8eb9a8;
+		
+	}
+	a.user{
+		
+		background-color:#f4828c;
+		
+	}
+	
+	a.adminYES{
+		float:left;
+		background-color:#869f1f;
+		
+	}
+	
+	a.adminNO{
+		float:left;
+		background-color: #ac1406;
+	}
+	
+	.alert{
+		color:red;
+		font-size:1.2em;
+		text-align: center;
+	}
+	
+	.post{
+		width:100%;
+		padding:1%;
+	}
+	
+	.comment{
+		background-color: #8eb9a8;
+		padding:1%;
+		margin-bottom:1%;
+	}
+	
+	.comment .autor{
+		font-size:0.9em;
+		color: #775c6a;
+			}
+			
+	.comment .com{
+		font-style:italic;
+		padding-left:2%;
+	}
+@media screen and (min-width:800px){
+	
+	#tytul{
+		position: absolute;
+		top:20%;
+		left:50%;
+		margin:auto;
+		margin-left:-50%;
+		font-size:3em;
+		color:white;
+		text-shadow: 0px 0px 6px rgba(0, 0, 0, 1);
+		
+	}
 	.navfoto{
 	display:block;
 	width:100%;
 
 }
 	nav{
-		width:100%;
+		width:80%;
+		margin: 0 10%;
 		margin-right:2%;
 		background-image:none;
-		background-color:#8C002A;
 		overflow: auto;
 	}
 	nav ul li a{
 		float:left;
 		width:25%;
-		padding:20px;
+		padding:16px;
 		font-size:1.3em;
+		background-color:#f4828c;
 		border-bottom: 1px solid #E3E3E3;
+		border-right: 1px solid white;
 	}
 	
 	nav ul li a:hover{
-		font-size:1.4em;
+		font-size:1.3em;
+		background-color: #775c6a;
 	
 	}
 
 	nav ul li a:active{
-		font-size:1.4em;
-	
+		font-size:1.3em;
+		background-color: #8eb9a8;
 	}
 	#wrap{
 		
 		width:70%;
 		margin:0% 15%;
 	}
-	#artysta{
-		clear:left;
+	
+	.wpis, .ranking, .artysta{
+		display:block;
+		float:left;
+		width:32.3333%;
+		margin:0.5%;
 	}
+
 	.part{
 		float:left;
 		width:50%;
 	}
-	
-	.inne{
-		clear:left;
-	}
-	#ksiega{
-		width:70%;
-		margin:0 15%;
-	}
-	
-	
 	
 	.moja{
 		width:670px;
